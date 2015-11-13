@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <generator>
-	<dataSource>
-		<type val="mysql"/>
-		<driverClass val="com.mysql.jdbc.Driver"/>
-		<url val="jdbc:mysql://183.56.154.138:23036/booking"/>
-		<username val="bookingUser"/>
-		<password val="booking_abcd"/>
-		<tableSchema val="booking"/>
-	</dataSource>
 	<config>
-		<basePath val="D:/dev/src/git/spring/WebGenerator/src/test/java/"/>
+		<property name="dbType" value="mysql"/>
+		<property name="schema" value="booking"/>
+		<property name="basePath" value="D:/dev/src/git/spring/WebGenerator/src/test/java/"/>
+		<property name="domain" value="com.cnlot.booking.domain"/>
+		<property name="javaMapper" value="com.cnlot.booking.dao"/>
+		<property name="xmlMapper" value="com.cnlot.booking.dao.mapping"/>
+		<property name="service" value="com.cnlot.booking.service"/>
+		<property name="serviceImpl" value="com.cnlot.booking.service.impl"/>
+		<property name="controller" value="com.cnlot.booking.web.action"/>
 	</config>
-	<domain package="com.cnlot.booking.domain"/>
-	<javaMapper package="com.cnlot.booking.dao"/>
-	<xmlMapper package="com.cnlot.booking.dao.mapping"/>
-	<service package="com.cnlot.booking.service" impl="com.cnlot.booking.service.impl"/>
-	<controller package="com.cnlot.booking.web.action"/>
-
 	<!--
 		SELECT COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,ORDINAL_POSITION,CHARACTER_MAXIMUM_LENGTH,COLUMN_KEY
 FROM INFORMATION_SCHEMA.COLUMNS where INFORMATION_SCHEMA.COLUMNS.TABLE_SCHEMA= 'booking' and INFORMATION_SCHEMA.COLUMNS.TABLE_NAME="mi_trainer";
