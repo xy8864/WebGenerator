@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:appConfig.properties"/>
+	</bean>
+
+	<!-- 配置数据源 office -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" lazy-init="true">
+		<property name="driverClassName" value="${dataSource.driverClassName}"/>
+		<property name="url" value="${dataSource.url}"/>
+		<property name="username" value="${dataSource.username}"/>
+		<property name="password" value="${dataSource.password}"/>
+		<property name="testWhileIdle" value="true"/>
+		<property name="testOnBorrow" value="false"/>
+		<property name="testOnReturn" value="false"/>
+		<property name="validationQuery" value="SELECT NOW()"/>
+		<property name="validationQueryTimeout" value="1"/>
+		<property name="timeBetweenEvictionRunsMillis" value="30000"/>
+		<property name="numTestsPerEvictionRun" value="16"/>
+		<property name="initialSize" value="5"/>
+		<property name="maxActive" value="10"/>
+		<property name="maxIdle" value="10"/>
+		<property name="minIdle" value="10"/>
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+</beans>
