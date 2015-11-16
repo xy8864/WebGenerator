@@ -30,6 +30,34 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 
+	<!--
+	 http://www.codeweblog.com/freemarker-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE-%E5%AE%9E%E7%8E%B0templatedirectivemodel/
+	 -->
+	<!--<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/" />
+		<property name="freemarkerVariables">
+			<map >
+				<entry key="userListDirective" value="userListTag" />
+			</map>
+		</property>
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">0</prop>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="url_escaping_charset">UTF-8</prop>
+				<prop key="locale">zh_CN</prop>
+				<prop key="boolean_format">true,false</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="">HH:mm:ss</prop>
+				<prop key="numbtime_formater_format">0.######</prop>
+				<prop key="whitespace_stripping">true</prop>
+			</props>
+		</property>
+	</bean>-->
 
-	<bean id="mysqlCodeMarker" class="com.github.xy8864.webGenerator.code.mysql.MysqlCodeMarker"/>
+
+	<!--<bean id="mysqlCodeMarker" class="com.github.xy8864.webGenerator.marker.mysql.MysqlCodeMarker"/>-->
+
+	<bean class="com.github.xy8864.webGenerator.marker.Generator"/>
 </beans>

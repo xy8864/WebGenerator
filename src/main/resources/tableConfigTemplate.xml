@@ -2,6 +2,12 @@
 <generator>
 	<config>
 		<property name="dbType" value="mysql"/>
+		<property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.28.211:3306/booking?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"/>
+		<property name="jdbcUsername" value="bookingUser"/>
+		<property name="jdbcPassword" value="booking_abcd"/>
+
+
 		<property name="schema" value="booking"/>
 		<property name="basePath" value="D:/dev/src/git/spring/WebGenerator/src/test/java/"/>
 		<property name="domain" value="com.cnlot.booking.domain"/>
