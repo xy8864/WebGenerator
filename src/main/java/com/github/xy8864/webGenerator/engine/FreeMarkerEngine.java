@@ -14,6 +14,7 @@ import com.github.xy8864.webGenerator.util.CharsetUtil;
 import com.github.xy8864.webGenerator.util.ClassUtil;
 import com.github.xy8864.webGenerator.util.FileUtil;
 import freemarker.ext.beans.BeansWrapper;
+import freemarker.ext.beans.BeansWrapperBuilder;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateHashModel;
@@ -27,11 +28,11 @@ import org.springframework.util.ResourceUtils;
  * @author WYY
  * @description
  */
-public class FreeEngine implements Engine{
-	private static final Logger logger=LoggerFactory.getLogger(FreeEngine.class);
+public class FreeMarkerEngine implements Engine{
+	private static final Logger logger=LoggerFactory.getLogger(FreeMarkerEngine.class);
 	private static final Configuration cfg=new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
 
-	public FreeEngine(String templateDir){
+	public FreeMarkerEngine(String templateDir){
 		try{
 			if(StringUtils.isEmpty(templateDir)){
 				cfg.setDirectoryForTemplateLoading(new File(ClassUtil.getClassPath()));
@@ -93,7 +94,10 @@ public class FreeEngine implements Engine{
 
 	public static TemplateHashModel useStaticPackage(String packageName){
 		try{
-			BeansWrapper wrapper=BeansWrapper.getDefaultInstance();
+			//BeansWrapper wrapper=BeansWrapper.getDefaultInstance();
+			BeansWrapperBuilder builder = new BeansWrapperBuilder(Configuration.VERSION_2_3_22);
+			builder.setExposeFields(true);
+			BeansWrapper wrapper=builder.build();;
 			TemplateHashModel staticModels=wrapper.getStaticModels();
 			return (TemplateHashModel) staticModels.get(packageName);
 		}catch(Exception e){
@@ -103,7 +107,7 @@ public class FreeEngine implements Engine{
 	}
 
 	public static void main(String[] args){
-		FreeEngine engine=new FreeEngine("D:/dev/src/git/spring/WebGenerator/src/main/resources/freemarker/");
+		FreeMarkerEngine engine=new FreeMarkerEngine("D:/dev/src/git/spring/WebGenerator/src/main/resources/freemarker/");
 		Map<String,Object> map=new HashMap<String, Object>();
 		map.put("package","com.cnlot.booking.domain");
 		map.put("className","Trainer");
