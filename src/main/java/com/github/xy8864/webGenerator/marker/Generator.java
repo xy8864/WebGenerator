@@ -2,14 +2,14 @@ package com.github.xy8864.webGenerator.marker;
 
 import java.io.File;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import com.github.xy8864.webGenerator.marker.mysql.MysqlReader;
 import com.github.xy8864.webGenerator.core.Config;
+import com.github.xy8864.webGenerator.core.GeneratorException;
+import com.github.xy8864.webGenerator.engine.Engine;
+import com.github.xy8864.webGenerator.engine.FreeMarkerEngine;
 import com.github.xy8864.webGenerator.util.CheckUtil;
-import org.apache.commons.dbcp.BasicDataSource;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -25,7 +25,7 @@ public class Generator{
 
 
 	public void build(){
-		Config config=null;
+		Config config;
 		try{
 			config=readConfig();
 		}catch(Exception e){
@@ -33,7 +33,6 @@ public class Generator{
 			System.exit(0);
 			return;
 		}
-
 		buildCode(config);
 	}
 
@@ -46,41 +45,36 @@ public class Generator{
 		Element root = doc.getRootElement();
 
 		List<Element> list=root.element("config").element("property").elements();
-
-		Map<String,String> config=new HashMap<String, String>();
+		if(CheckUtil.isEmpty(list)){
+			throw new GeneratorException("没有找到配置");
+		}
+		Config config=new Config();
 		for(Element e:list){
-			config.put(e.attributeValue("name"),e.attributeValue("value"));
+			config.addDbConfig(e.attributeValue("name"), e.attributeValue("value"));
 		}
 
 
 		List<Element> tables=root.element("tables").element("table").elements();
 		if(CheckUtil.isEmpty(tables)){
-			return null;
+			throw new GeneratorException("没有找到table");
 		}
-		Map<String,String> tableMap=new HashMap<String, String>();
 		for(Element e:list){
-			config.put(e.attributeValue("table"),e.attributeValue("domain"));
+			config.addTable(e.attributeValue("table"), e.attributeValue("domain"));
 		}
 
-		return new Config();
+		config.setDbType(config.getConfig("jdbc.type"));
+		config.setSchema(config.getConfig("jdbc.schema"));
+		config.setBasePath(config.getConfig("basePath"));
+		config.setTemplateDir(config.getConfig("templateDir"));
+		return config;
 	}
-
-	void openConnect(){
-		BasicDataSource basicDataSource = new BasicDataSource();
-		basicDataSource.setDriverClassName("oracle.jdbc.OracleDriver");
-		basicDataSource.setUrl("jdbc:oracle:thin:@<database>");
-		basicDataSource.setUsername("user");
-		basicDataSource.setPassword("password");
-		try{
-			connection=basicDataSource.getConnection();
-		}catch(SQLException e){
-			log.info("连接数据库失败");
-		}
-	}
-
 
 
 	void buildCode(Config config){
+		//DatabaseInfoReader infoReader=new MysqlReader();
+		new MysqlReader().read(config);
+
+		Engine engine=new FreeMarkerEngine(config.getTemplateDir());
 
 	}
 }

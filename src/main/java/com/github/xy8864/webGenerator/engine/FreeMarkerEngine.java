@@ -32,6 +32,7 @@ public class FreeMarkerEngine implements Engine{
 	private static final Logger logger=LoggerFactory.getLogger(FreeMarkerEngine.class);
 	private static final Configuration cfg=new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
 
+	/** 模板文件路径 */
 	public FreeMarkerEngine(String templateDir){
 		try{
 			if(StringUtils.isEmpty(templateDir)){

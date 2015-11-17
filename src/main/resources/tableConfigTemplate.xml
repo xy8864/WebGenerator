@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <generator>
 	<config>
-		<property name="dbType" value="mysql"/>
-		<property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://192.168.28.211:3306/booking?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"/>
-		<property name="jdbcUsername" value="bookingUser"/>
-		<property name="jdbcPassword" value="booking_abcd"/>
+		<property name="jdbc.type" value="mysql"/>
+		<property name="jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbc.url" value="jdbc:mysql://192.168.28.211:3306/booking?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
+		<property name="jdbc.username" value="bookingUser"/>
+		<property name="jdbc.password" value="booking_abcd"/>
+		<!-- 库 -->
+		<property name="jdbc.schema" value="booking"/>
 
-
-		<property name="schema" value="booking"/>
+		<property name="templateDir" value="D:/dev/src/git/spring/WebGenerator/src/main/resources/freemarker/"/>
 		<property name="basePath" value="D:/dev/src/git/spring/WebGenerator/src/test/java/"/>
+
 		<property name="domain" value="com.cnlot.booking.domain"/>
 		<property name="javaMapper" value="com.cnlot.booking.dao"/>
 		<property name="xmlMapper" value="com.cnlot.booking.dao.mapping"/>
