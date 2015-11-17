@@ -64,4 +64,5 @@ public class Column implements Serializable{
 	public void setPk(boolean pk){
 		this.pk=pk;
 	}
+
 }

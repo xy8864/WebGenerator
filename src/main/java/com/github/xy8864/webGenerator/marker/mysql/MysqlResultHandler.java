@@ -4,8 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.github.xy8864.webGenerator.core.Column;
+import com.github.xy8864.webGenerator.core.GeneratorException;
+import com.github.xy8864.webGenerator.core.JdbcType;
 import com.github.xy8864.webGenerator.core.Table;
 import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,12 +24,23 @@ public class MysqlResultHandler implements ResultSetHandler{
 
 	@Override
 	public Object handle(ResultSet rs) throws SQLException{
-		Column column=new Column();
-		column.setName(rs.getString("COLUMN_NAME"));
-		column.setType(rs.getString("DATA_TYPE"));
-		column.setComment(rs.getString("COLUMN_COMMENT"));
-		column.setPk("1".equals(rs.getString("isPri")));
-		table.addColumn(column);
+		while(rs.next()){
+			Column column=new Column();
+			column.setName(rs.getString("COLUMN_NAME"));
+			column.setType(rs.getString("DATA_TYPE"));
+			column.setComment(StringUtils.defaultString(rs.getString("COLUMN_COMMENT"),null));
+			String javaType=JdbcType.forJavaType(column.getType());
+			if(StringUtils.isEmpty(javaType)){
+				throw new GeneratorException(String.format("表[%s]的字段[%s:%s]没有找到映射的javaType",table,column.getName(),column.getType()));
+			}
+			column.setJavaType(javaType);
+			if("1".equals(rs.getString("isPri"))){
+				column.setPk(true);
+				table.setPk(column);
+			}
+			table.addColumn(column);
+		}
+
 		return null;
 	}
 }

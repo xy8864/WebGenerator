@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="ALL_STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			       value="%d{HH\:mm\:ss} %-5p %t - %c.%M:%L - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="debug" />
+			<param name="levelMax" value="FATAL" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			       value="%d{HH\:mm\:ss} %-5p %t - %c{1}.%M:%L - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="debug" />
+			<param name="levelMax" value="FATAL" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	<appender name="FILE"
+	          class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="../logfile/adMgr/log" />
+		<param name="DatePattern" value="'_'yyyy-MM-dd'.log'" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			       value="%d{yyyy-MM-dd HH\:mm\:ss} %-5p %t - %c.%M(%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="FATAL" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<appender name="FILE_ERROR"
+	          class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"
+		       value="../logfile/adMgr/error" />
+		<param name="DatePattern" value="'_'yyyy-MM-dd'.log'" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			       value="%-d{yyyy-MM-dd HH:mm:ss} %p (%c:%L) - %m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="ERROR" />
+			<param name="levelMax" value="FATAL" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+<!--	<appender name="DATABASE" class="org.apache.log4j.jdbc.JDBCAppender">
+		<param name="URL" value="jdbc:mysql://192.168.28.227:3306/log_jh?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" />
+		<param name="driver" value="com.mysql.jdbc.Driver" />
+		<param name="user" value="root_lottery" />
+		<param name="password" value="lottery_@#$%" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			       value="insert into log (serverName,className,method,createTime,logLevel,msg) values ('adMgr','%C','%M','%d{yyyy-MM-dd HH:mm:ss}','%p','%m')" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="ERROR" />
+			<param name="levelMax" value="FATAL" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>-->
+	<category name="net.sourceforge.jdbclogger" additivity="false"><priority value="ERROR"/><appender-ref ref="STDOUT"/></category>
+	<category name="net.sourceforge.jdbclogger.core" additivity="false"><priority value="debug"/><appender-ref ref="STDOUT"/></category>
+
+
+
+
+	<category name="org.apache.ibatis" additivity="false">
+		<priority value="WARN" />
+		<appender-ref ref="STDOUT" />
+	</category>
+	<category name="org.apache.mina" additivity="false">
+		<priority value="WARN" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</category>
+	<category name="org.mybatis.spring" additivity="false">
+		<priority value="INFO" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</category>
+	<category name="org.springframework" additivity="false">
+		<priority value="ERROR" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</category>
+
+	<category name="java.sql" additivity="false">
+		<priority value="WARN" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</category>
+
+	<category name="com.github.xy8864" additivity="false">
+		<priority value="WARN" />
+		<appender-ref ref="STDOUT" />
+	</category>
+
+
+	<category name="org.apache.commons.dbcp" additivity="false">
+		<priority value="ERROR" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</category>
+
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</log4j:configuration>

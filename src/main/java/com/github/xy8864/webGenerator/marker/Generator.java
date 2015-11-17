@@ -4,11 +4,9 @@ import java.io.File;
 import java.sql.Connection;
 import java.util.List;
 
-import com.github.xy8864.webGenerator.marker.mysql.MysqlReader;
 import com.github.xy8864.webGenerator.core.Config;
 import com.github.xy8864.webGenerator.core.GeneratorException;
-import com.github.xy8864.webGenerator.engine.Engine;
-import com.github.xy8864.webGenerator.engine.FreeMarkerEngine;
+import com.github.xy8864.webGenerator.marker.mysql.MysqlReader;
 import com.github.xy8864.webGenerator.util.CheckUtil;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -29,7 +27,7 @@ public class Generator{
 		try{
 			config=readConfig();
 		}catch(Exception e){
-			log.info("读取配置文件失败");
+			log.error("读取配置文件失败", e);
 			System.exit(0);
 			return;
 		}
@@ -44,7 +42,7 @@ public class Generator{
 
 		Element root = doc.getRootElement();
 
-		List<Element> list=root.element("config").element("property").elements();
+		List<Element> list=root.element("config").elements("property");
 		if(CheckUtil.isEmpty(list)){
 			throw new GeneratorException("没有找到配置");
 		}
@@ -54,11 +52,11 @@ public class Generator{
 		}
 
 
-		List<Element> tables=root.element("tables").element("table").elements();
+		List<Element> tables=root.element("tables").elements("table");
 		if(CheckUtil.isEmpty(tables)){
 			throw new GeneratorException("没有找到table");
 		}
-		for(Element e:list){
+		for(Element e:tables){
 			config.addTable(e.attributeValue("table"), e.attributeValue("domain"));
 		}
 
@@ -66,6 +64,8 @@ public class Generator{
 		config.setSchema(config.getConfig("jdbc.schema"));
 		config.setBasePath(config.getConfig("basePath"));
 		config.setTemplateDir(config.getConfig("templateDir"));
+		config.setDomain(config.getConfig("domain"));
+		config.setJavaMapper(config.getConfig("javaMapper"));
 		return config;
 	}
 
@@ -74,7 +74,7 @@ public class Generator{
 		//DatabaseInfoReader infoReader=new MysqlReader();
 		new MysqlReader().read(config);
 
-		Engine engine=new FreeMarkerEngine(config.getTemplateDir());
+		new DefaultCodeMarker(config).build();
 
 	}
 }

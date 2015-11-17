@@ -53,7 +53,7 @@ public class MysqlReader implements DatabaseInfoReader{
 		QueryRunner runner=new QueryRunner();
 
 		String sql = "SELECT COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,IF(COLUMN_KEY='PRI',1,0) isPri" +
-				" FROM INFORMATION_SCHEMA.COLUMNS where INFORMATION_SCHEMA.COLUMNS.TABLE_SCHEMA= '?' and INFORMATION_SCHEMA.COLUMNS.TABLE_NAME='?'";
+				" FROM INFORMATION_SCHEMA.COLUMNS where INFORMATION_SCHEMA.COLUMNS.TABLE_SCHEMA=? and INFORMATION_SCHEMA.COLUMNS.TABLE_NAME=?";
 
 		try{
 			for(Table table:config.getTableMap().values()){

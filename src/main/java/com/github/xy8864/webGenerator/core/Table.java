@@ -60,4 +60,9 @@ public class Table implements Serializable{
 		if(columns==null)columns=new LinkedHashSet<Column>();
 		columns.add(column);
 	}
+
+	@Override
+	public String toString(){
+		return name;
+	}
 }

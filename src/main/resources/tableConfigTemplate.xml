@@ -10,7 +10,7 @@
 		<property name="jdbc.schema" value="booking"/>
 
 		<property name="templateDir" value="D:/dev/src/git/spring/WebGenerator/src/main/resources/freemarker/"/>
-		<property name="basePath" value="D:/dev/src/git/spring/WebGenerator/src/test/java/"/>
+		<property name="basePath" value="D:/dev/src/git/spring/WebGenerator/src/test/code/"/>
 
 		<property name="domain" value="com.cnlot.booking.domain"/>
 		<property name="javaMapper" value="com.cnlot.booking.dao"/>
@@ -19,10 +19,6 @@
 		<property name="serviceImpl" value="com.cnlot.booking.service.impl"/>
 		<property name="controller" value="com.cnlot.booking.web.action"/>
 	</config>
-	<!--
-		SELECT COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,ORDINAL_POSITION,CHARACTER_MAXIMUM_LENGTH,COLUMN_KEY
-FROM INFORMATION_SCHEMA.COLUMNS where INFORMATION_SCHEMA.COLUMNS.TABLE_SCHEMA= 'booking' and INFORMATION_SCHEMA.COLUMNS.TABLE_NAME="mi_trainer";
-	-->
 	<tables>
 		<table table="mi_trainer" domain="Trainer" />
 	</tables>

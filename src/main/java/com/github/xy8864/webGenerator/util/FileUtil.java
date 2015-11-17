@@ -339,8 +339,8 @@ public class FileUtil extends FileUtils {
 	public static boolean createFile(String descFileName) {
 		File file = new File(descFileName);
 		if (file.exists()) {
-			log.debug("文件 " + descFileName + " 已存在!");
-			return false;
+			log.warn("文件 " + descFileName + " 已存在!");
+			//return false;
 		}
 		if (descFileName.endsWith(File.separator)) {
 			log.debug(descFileName + " 为目录，不能创建目录!");
