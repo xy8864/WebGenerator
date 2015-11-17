@@ -1,8 +1,6 @@
 package com.github.xy8864.webGenerator.marker;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -17,13 +15,13 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.ResourceUtils;
 
 public class Generator{
 	private static final Logger log = LoggerFactory.getLogger(Generator.class);
-	@Autowired JdbcTemplate jdbcTemplate;
+
+	Connection connection;
+	//@Autowired JdbcTemplate jdbcTemplate;
 
 
 	public void build(){
@@ -67,16 +65,16 @@ public class Generator{
 		return new Config();
 	}
 
-	public void connectDb(){
+	void openConnect(){
 		BasicDataSource basicDataSource = new BasicDataSource();
 		basicDataSource.setDriverClassName("oracle.jdbc.OracleDriver");
 		basicDataSource.setUrl("jdbc:oracle:thin:@<database>");
 		basicDataSource.setUsername("user");
 		basicDataSource.setPassword("password");
 		try{
-			Connection connection=basicDataSource.getConnection();
+			connection=basicDataSource.getConnection();
 		}catch(SQLException e){
-			e.printStackTrace();
+			log.info("连接数据库失败");
 		}
 	}
 
