@@ -104,7 +104,7 @@ public class FreemarkerUtil{
 			File f = new File(fileDir + getFileName());
 			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), "utf-8"));
 			try {
-				temp.setEncoding("utf-8");
+				//temp.setEncoding("utf-8");
 				temp.process(param, out);
 				log.info("文件："+getFileDir()+getFileName()+"生成完成！");
 			} catch (TemplateException e) {
@@ -140,7 +140,7 @@ public class FreemarkerUtil{
 			}
 			File file = new File(jsp);
 			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
-			tmp.setEncoding("utf-8");
+			//tmp.setEncoding("utf-8");
 			tmp.process(page, writer);
 			writer.flush();
 			writer.close();
@@ -155,7 +155,7 @@ public class FreemarkerUtil{
 	}
 
 	public static Template getTemplate(String templateName) {
-		Configuration cfg = new Configuration();
+		Configuration cfg = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
 		Template temp = null;
 		URL path = ClassLoader.getSystemResource("");
 		File tmpRootFile = null;
@@ -174,7 +174,7 @@ public class FreemarkerUtil{
 			cfg.setOutputEncoding("utf-8");
 			cfg.setDirectoryForTemplateLoading(tmpRootFile);
             /*cfg.setDirectoryForTemplateLoading(getResourceURL());*/
-			cfg.setObjectWrapper(new DefaultObjectWrapper());
+			cfg.setObjectWrapper(new DefaultObjectWrapper(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS));
 			temp = cfg.getTemplate(templateName);
 		} catch (IOException e) {
 			e.printStackTrace();

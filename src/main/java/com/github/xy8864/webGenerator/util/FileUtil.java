@@ -339,7 +339,12 @@ public class FileUtil extends FileUtils {
 	public static boolean createFile(String descFileName) {
 		File file = new File(descFileName);
 		if (file.exists()) {
-			log.warn("文件 " + descFileName + " 已存在!");
+			if(file.delete()){
+				log.warn("文件 " + descFileName + " 已存在,覆盖!");
+			}else{
+				log.warn("文件 " + descFileName + " 已存在,删除失败!");
+				return false;
+			}
 			//return false;
 		}
 		if (descFileName.endsWith(File.separator)) {

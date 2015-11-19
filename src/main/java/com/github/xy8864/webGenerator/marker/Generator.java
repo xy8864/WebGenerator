@@ -66,6 +66,10 @@ public class Generator{
 		config.setTemplateDir(config.getConfig("templateDir"));
 		config.setDomain(config.getConfig("domain"));
 		config.setJavaMapper(config.getConfig("javaMapper"));
+		config.setXmlMapper(config.getConfig("xmlMapper"));
+		config.setService(config.getConfig("service"));
+		config.setServiceImpl(config.getConfig("serviceImpl"));
+		config.setController(config.getConfig("controller"));
 		return config;
 	}
 

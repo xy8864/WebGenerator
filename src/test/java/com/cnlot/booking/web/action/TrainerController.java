@@ -1,9 +1,7 @@
-package ${package};
+package com.cnlot.booking.web.action;
 
-<#assign ClassName=StringUtil.firstToUpper(domainName)>
-<#assign className=StringUtil.firstToLower(domainName)>
-import ${domainPackage}.${ClassName};
-import ${servicePackage}.${ClassName}Service;
+import com.cnlot.booking.domain.Trainer;
+import com.cnlot.booking.service.TrainerService;
 import com.github.xy8864.webGenerator.base.JsonResponse;
 import com.github.xy8864.webGenerator.base.Page;
 import com.github.xy8864.webGenerator.base.Parameter;
@@ -15,16 +13,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-@RequestMapping("/${className}")
-public class ${ClassName}Controller{
-	private static final Logger log = LoggerFactory.getLogger(${ClassName}Controller.class);
+@RequestMapping("/trainer")
+public class TrainerController{
+	private static final Logger log = LoggerFactory.getLogger(TrainerController.class);
 
-	@Autowired ${ClassName}Service service;
+	@Autowired TrainerService service;
 
 	@ResponseBody
 	@RequestMapping(produces="application/json;charset=UTF-8")
@@ -34,7 +33,7 @@ public class ${ClassName}Controller{
 			return JsonResponse.STRING_OK;
 		}catch(Exception e){
 			RequestUtil.debugParam(request);
-			log.error("create ${className} error",e);
+			log.error("create trainer error",e);
 			return JsonResponse.STRING_FAIL;
 		}
 	}
@@ -68,7 +67,7 @@ public class ${ClassName}Controller{
 			return JsonResponse.STRING_OK;
 		}catch(Exception e){
 			RequestUtil.debugParam(request);
-			log.error("update ${className} error",e);
+			log.error("update trainer error",e);
 			return JsonResponse.STRING_FAIL;
 		}
 	}
@@ -82,7 +81,7 @@ public class ${ClassName}Controller{
 			return JsonResponse.STRING_OK;
 		}catch(Exception e){
 			RequestUtil.debugParam(request);
-			log.error("delete ${className} error",e);
+			log.error("delete trainer error",e);
 			return JsonResponse.STRING_FAIL;
 		}
 	}
@@ -91,7 +90,7 @@ public class ${ClassName}Controller{
 	public JsonResponse list(HttpServletRequest request){
 		JsonResponse response=new JsonResponse();
 
-		Page<${ClassName}> page=new Page<${ClassName}>();
+		Page<Trainer> page=new Page<Trainer>();
 		page.setTotalCount(RequestUtil.get(request, "total", 0L));
 		page.setPageNo(RequestUtil.get(request, "pageNo", 1L));
 		page.setPageSize(RequestUtil.get(request, "pageSize", 20L));// default 20
@@ -104,7 +103,7 @@ public class ${ClassName}Controller{
 			service.page( page);
 		}catch(Exception e){
 			RequestUtil.debugParam(request);
-			log.error("list ${className} error",e);
+			log.error("list trainer error",e);
 		}
 
 		page.getFilter().clear();
@@ -123,7 +122,7 @@ public class ${ClassName}Controller{
 			service.toggle( id);
 			return JsonResponse.STRING_OK;
 		}catch(Exception e){
-			log.error("toggle ${className} error",e);
+			log.error("toggle trainer error",e);
 			return JsonResponse.STRING_FAIL;
 		}
 	}

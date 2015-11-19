@@ -27,11 +27,11 @@ public class MysqlResultHandler implements ResultSetHandler{
 		while(rs.next()){
 			Column column=new Column();
 			column.setName(rs.getString("COLUMN_NAME"));
-			column.setType(rs.getString("DATA_TYPE"));
+			column.setJdbcType(rs.getString("DATA_TYPE"));
 			column.setComment(StringUtils.defaultString(rs.getString("COLUMN_COMMENT"),null));
-			String javaType=JdbcType.forJavaType(column.getType());
+			String javaType=JdbcType.forJavaType(column.getJdbcType());
 			if(StringUtils.isEmpty(javaType)){
-				throw new GeneratorException(String.format("表[%s]的字段[%s:%s]没有找到映射的javaType",table,column.getName(),column.getType()));
+				throw new GeneratorException(String.format("表[%s]的字段[%s:%s]没有找到映射的javaType",table,column.getName(),column.getJdbcType()));
 			}
 			column.setJavaType(javaType);
 			if("1".equals(rs.getString("isPri"))){

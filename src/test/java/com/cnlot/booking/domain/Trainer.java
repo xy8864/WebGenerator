@@ -3,11 +3,11 @@ package com.cnlot.booking.domain;
 import java.io.Serializable;
 
 public class Trainer implements Serializable {
-	/**  */
+	
 	private Long id;
 	/** 真实姓名 */
 	private String name;
-	/**  */
+	
 	private Integer sex;
 	/** 年龄 */
 	private Integer age;
@@ -17,9 +17,9 @@ public class Trainer implements Serializable {
 	private Integer status;
 	/** 资格标签 */
 	private String tags;
-	/**  */
+	
 	private Integer cityCode;
-	/**  */
+	
 	private Integer areaCode;
 	/** 教龄 */
 	private Integer teachingAge;
@@ -34,11 +34,11 @@ public class Trainer implements Serializable {
 	/** 介绍 */
 	private String introduction;
 
-	/**  */
+	
 	public Long getId() {
 		return id;
 	}
-	/**  */
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -52,11 +52,11 @@ public class Trainer implements Serializable {
 		this.name = name;
 	}
 
-	/**  */
+	
 	public Integer getSex() {
 		return sex;
 	}
-	/**  */
+	
 	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
@@ -97,20 +97,20 @@ public class Trainer implements Serializable {
 		this.tags = tags;
 	}
 
-	/**  */
+	
 	public Integer getCityCode() {
 		return cityCode;
 	}
-	/**  */
+	
 	public void setCityCode(Integer cityCode) {
 		this.cityCode = cityCode;
 	}
 
-	/**  */
+	
 	public Integer getAreaCode() {
 		return areaCode;
 	}
-	/**  */
+	
 	public void setAreaCode(Integer areaCode) {
 		this.areaCode = areaCode;
 	}
