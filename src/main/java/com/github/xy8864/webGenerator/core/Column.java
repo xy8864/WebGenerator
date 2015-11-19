@@ -11,7 +11,8 @@ import java.io.Serializable;
 public class Column implements Serializable{
 	private static final long serialVersionUID=-1509769104419614749L;
 	private String name;
-	private String type;
+	/** */
+	private String jdbcType;
 	private String comment;
 
 	private String javaType;
@@ -19,9 +20,9 @@ public class Column implements Serializable{
 
 	public Column(){}
 
-	public Column(String name, String type, String comment){
+	public Column(String name, String jdbcType, String comment){
 		this.name=name;
-		this.type=type;
+		this.jdbcType=jdbcType;
 		this.comment=comment;
 	}
 
@@ -33,12 +34,12 @@ public class Column implements Serializable{
 		this.name=name;
 	}
 
-	public String getType(){
-		return type;
+	public String getJdbcType(){
+		return jdbcType;
 	}
 
-	public void setType(String type){
-		this.type=type;
+	public void setJdbcType(String jdbcType){
+		this.jdbcType=jdbcType;
 	}
 
 	public String getComment(){

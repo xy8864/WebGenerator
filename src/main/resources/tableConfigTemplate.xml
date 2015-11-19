@@ -10,7 +10,7 @@
 		<property name="jdbc.schema" value="booking"/>
 
 		<property name="templateDir" value="D:/dev/src/git/spring/WebGenerator/src/main/resources/freemarker/"/>
-		<property name="basePath" value="D:/dev/src/git/spring/WebGenerator/src/test/code/"/>
+		<property name="basePath" value="D:/dev/src/git/spring/WebGenerator/src/test/java/"/>
 
 		<property name="domain" value="com.cnlot.booking.domain"/>
 		<property name="javaMapper" value="com.cnlot.booking.dao"/>

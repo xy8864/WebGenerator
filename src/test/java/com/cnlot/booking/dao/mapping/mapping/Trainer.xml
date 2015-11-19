@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnlot.booking.domain.TrainerMapper" >
+	<resultMap id="RM_Trainer" type="com.cnlot.booking.domain.Trainer" >
+		<id column="id" property="id" jdbcType="BIGINT" />
+		
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="INT" />
+		<result column="age" property="age" jdbcType="INT" />
+		<result column="gameType" property="gameType" jdbcType="INT" />
+		<result column="status" property="status" jdbcType="INT" />
+		<result column="tags" property="tags" jdbcType="VARCHAR" />
+		<result column="cityCode" property="cityCode" jdbcType="INT" />
+		<result column="areaCode" property="areaCode" jdbcType="INT" />
+		<result column="teachingAge" property="teachingAge" jdbcType="INT" />
+		<result column="venueId" property="venueId" jdbcType="BIGINT" />
+		<result column="venueName" property="venueName" jdbcType="VARCHAR" />
+		<result column="star" property="star" jdbcType="DECIMAL" />
+		<result column="bookingTimes" property="bookingTimes" jdbcType="BIGINT" />
+		<result column="introduction" property="introduction" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<insert id="create">
+		insert into mi_trainer
+		(id,name,sex,age,gameType,status,tags,cityCode,areaCode,teachingAge,venueId,venueName,star,bookingTimes,introduction) values (
+		#{id,jdbcType=BIGINT} ,
+	
+		#{name,jdbcType=VARCHAR} ,
+	
+		#{sex,jdbcType=INT} ,
+	
+		#{age,jdbcType=INT} ,
+	
+		#{gameType,jdbcType=INT} ,
+	
+		#{status,jdbcType=INT} ,
+	
+		#{tags,jdbcType=VARCHAR} ,
+	
+		#{cityCode,jdbcType=INT} ,
+	
+		#{areaCode,jdbcType=INT} ,
+	
+		#{teachingAge,jdbcType=INT} ,
+	
+		#{venueId,jdbcType=BIGINT} ,
+	
+		#{venueName,jdbcType=VARCHAR} ,
+	
+		#{star,jdbcType=DECIMAL} ,
+	
+		#{bookingTimes,jdbcType=BIGINT} ,
+	
+		#{introduction,jdbcType=VARCHAR} 
+	)
+	</insert>
+
+	<select id="get" resultMap="RM_Trainer" parameterType="java.lang.Long" >
+		select * from mi_trainer where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="list" resultMap="RM_Trainer" >
+		select * from mi_trainer
+		<where>
+			<if test="id!=null">and id=#{id}</if>
+			<if test="name!=null">and name=#{name}</if>
+			<if test="sex!=null">and sex=#{sex}</if>
+			<if test="age!=null">and age=#{age}</if>
+			<if test="gameType!=null">and gameType=#{gameType}</if>
+			<if test="status!=null">and status=#{status}</if>
+			<if test="tags!=null">and tags=#{tags}</if>
+			<if test="cityCode!=null">and cityCode=#{cityCode}</if>
+			<if test="areaCode!=null">and areaCode=#{areaCode}</if>
+			<if test="teachingAge!=null">and teachingAge=#{teachingAge}</if>
+			<if test="venueId!=null">and venueId=#{venueId}</if>
+			<if test="venueName!=null">and venueName=#{venueName}</if>
+			<if test="star!=null">and star=#{star}</if>
+			<if test="bookingTimes!=null">and bookingTimes=#{bookingTimes}</if>
+			<if test="introduction!=null">and introduction=#{introduction}</if>
+		</where>
+		<choose>
+			<when test="pageable==0"></when>
+			<when test="pageSize!=null and offset!=null">limit #{offset},#{pageSize}</when>
+			<otherwise>limit 0,20</otherwise>
+		</choose>
+	</select>
+	<select id="count" resultType="long">
+		select count(*) from mi_trainer
+		<where>
+			<if test="id!=null">and id=#{id}</if>
+			<if test="name!=null">and name=#{name}</if>
+			<if test="sex!=null">and sex=#{sex}</if>
+			<if test="age!=null">and age=#{age}</if>
+			<if test="gameType!=null">and gameType=#{gameType}</if>
+			<if test="status!=null">and status=#{status}</if>
+			<if test="tags!=null">and tags=#{tags}</if>
+			<if test="cityCode!=null">and cityCode=#{cityCode}</if>
+			<if test="areaCode!=null">and areaCode=#{areaCode}</if>
+			<if test="teachingAge!=null">and teachingAge=#{teachingAge}</if>
+			<if test="venueId!=null">and venueId=#{venueId}</if>
+			<if test="venueName!=null">and venueName=#{venueName}</if>
+			<if test="star!=null">and star=#{star}</if>
+			<if test="bookingTimes!=null">and bookingTimes=#{bookingTimes}</if>
+			<if test="introduction!=null">and introduction=#{introduction}</if>
+		</where>
+	</select>
+
+	<update id="toggle">
+		update mi_trainer set status=IF(status=1,0,1),updateTime=sysdate() where id = #{_parameter}"}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long" >
+		update mi_trainer set status=0,updateTime=sysdate() where id = #{_parameter}"}
+	</delete>
+
+	<update id="update">
+		update mi_trainer
+		<set>
+			<if test="id!=null">id=#{id,BIGINT}, </if>
+			<if test="name!=null">name=#{name,VARCHAR}, </if>
+			<if test="sex!=null">sex=#{sex,INT}, </if>
+			<if test="age!=null">age=#{age,INT}, </if>
+			<if test="gameType!=null">gameType=#{gameType,INT}, </if>
+			<if test="status!=null">status=#{status,INT}, </if>
+			<if test="tags!=null">tags=#{tags,VARCHAR}, </if>
+			<if test="cityCode!=null">cityCode=#{cityCode,INT}, </if>
+			<if test="areaCode!=null">areaCode=#{areaCode,INT}, </if>
+			<if test="teachingAge!=null">teachingAge=#{teachingAge,INT}, </if>
+			<if test="venueId!=null">venueId=#{venueId,BIGINT}, </if>
+			<if test="venueName!=null">venueName=#{venueName,VARCHAR}, </if>
+			<if test="star!=null">star=#{star,DECIMAL}, </if>
+			<if test="bookingTimes!=null">bookingTimes=#{bookingTimes,BIGINT}, </if>
+			<if test="introduction!=null">introduction=#{introduction,VARCHAR}, </if>
+		</set>
+		where id = #{id}
+	</update>
+
+
+
+
+</mapper>
