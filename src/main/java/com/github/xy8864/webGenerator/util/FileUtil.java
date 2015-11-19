@@ -339,9 +339,9 @@ public class FileUtil{
 		File file = new File(descFileName);
 		if (file.exists()) {
 			if(file.delete()){
-				log.warn("文件 " + descFileName + " 已存在,覆盖!");
+				log.warn("File is exist,overwrite:{}", descFileName);
 			}else{
-				log.warn("文件 " + descFileName + " 已存在,删除失败!");
+				log.warn("File is exist,delete failure: {}" , descFileName);
 				return false;
 			}
 			//return false;

@@ -74,7 +74,7 @@ public class Generator{
 
 		String classpath=ClassUtil.getClassPath();
 		if(config.getOutput()==null){
-			config.setOutput(classpath+"/output/");
+			config.setOutput(classpath+"/../output/");
 		}
 		if(config.getTemplateDir()==null){
 			config.setTemplateDir(classpath+"/freemarker/");
