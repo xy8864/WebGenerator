@@ -3,7 +3,7 @@ package com.github.xy8864.webGenerator.base;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 /**
  * Created with IntelliJ IDEA.

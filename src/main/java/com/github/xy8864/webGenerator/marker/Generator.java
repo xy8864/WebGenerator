@@ -8,6 +8,7 @@ import com.github.xy8864.webGenerator.core.Config;
 import com.github.xy8864.webGenerator.core.GeneratorException;
 import com.github.xy8864.webGenerator.marker.mysql.MysqlReader;
 import com.github.xy8864.webGenerator.util.CheckUtil;
+import com.github.xy8864.webGenerator.util.ClassUtil;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -62,7 +63,7 @@ public class Generator{
 
 		config.setDbType(config.getConfig("jdbc.type"));
 		config.setSchema(config.getConfig("jdbc.schema"));
-		config.setBasePath(config.getConfig("basePath"));
+		config.setOutput(config.getConfig("outputDir"));
 		config.setTemplateDir(config.getConfig("templateDir"));
 		config.setDomain(config.getConfig("domain"));
 		config.setJavaMapper(config.getConfig("javaMapper"));
@@ -70,6 +71,18 @@ public class Generator{
 		config.setService(config.getConfig("service"));
 		config.setServiceImpl(config.getConfig("serviceImpl"));
 		config.setController(config.getConfig("controller"));
+
+		String classpath=ClassUtil.getClassPath();
+		if(config.getOutput()==null){
+			config.setOutput(classpath+"/output/");
+		}
+		if(config.getTemplateDir()==null){
+			config.setTemplateDir(classpath+"/freemarker/");
+		}
+
+		log.info("classpath:{}",classpath);
+		log.info("outputDir:{}",config.getOutput());
+		log.info("templateDir:{}",config.getTemplateDir());
 		return config;
 	}
 

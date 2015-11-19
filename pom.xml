@@ -6,11 +6,15 @@
 
 	<groupId>com.github.xy8864</groupId>
 	<artifactId>webGenerator</artifactId>
-	<version>0.0.1</version>
+	<version>1.0</version>
 	<name>webGenerator</name>
 
 
 	<properties>
+		<release.outputDir>${project.basedir}/release/${project.artifactId}-${project.version}/</release.outputDir>
+		<release.mainClass>com.github.xy8864.webGenerator.Main</release.mainClass>
+		<class.path>./ resources/ classes/</class.path>
+
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<timestamp>${maven.build.timestamp}</timestamp>
@@ -20,19 +24,11 @@
 
 		<!-- 3.2.12.RELEASE 4.1.7.RELEASE  -->
 		<spring.version>3.2.12.RELEASE</spring.version>
-		<mybatis.version>3.2.7</mybatis.version>
-		<mybatis-spring.version>1.2.2</mybatis-spring.version>
-		<validator.version>5.1.2.Final</validator.version>
-		<quartz.version>2.2.1</quartz.version>
-		<druid.version>1.0.2</druid.version>
 		<shiro.version>1.2.4</shiro.version>
 		<freemarker.version>2.3.23</freemarker.version>
-		<logback.version>1.0.13</logback.version>
-		<jetty.version>8.1.16.v20140903</jetty.version>
+
 		<log4j.version>1.2.16</log4j.version>
 		<slf4j.version>1.7.7</slf4j.version>
-		<class.path>./ resources/ classes/</class.path>
-
 	</properties>
 
 
@@ -63,16 +59,6 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>standard</artifactId>
-			<version>1.1.2</version>
-		</dependency>
-		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>javax.el-api</artifactId>
 			<version>2.2.4</version>
@@ -91,120 +77,16 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-		</dependency>
 
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcprov-jdk16</artifactId>
-			<version>1.46</version>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.3</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.0</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-pool</groupId>
-			<artifactId>commons-pool</artifactId>
-			<version>1.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-pool2</artifactId>
-			<version>2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-math3</artifactId>
-			<version>3.0</version>
-		</dependency>
-		<dependency>
 			<groupId>commons-dbutils</groupId>
 			<artifactId>commons-dbutils</artifactId>
-			<version>1.6</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>14.0.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.0.14</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.googlecode.log4jdbc</groupId>
-			<artifactId>log4jdbc</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.jdbclogger</groupId>
-			<artifactId>jdbclogger-all</artifactId>
-			<version>0.6</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-core</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>spring-beans</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>oracle-jdbc14</artifactId>
-					<groupId>jdbc</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>displaytag</groupId>
-			<artifactId>displaytag</artifactId>
-			<version>1.2</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>jcl104-over-slf4j</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>itext</artifactId>
-					<groupId>com.lowagie</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>slf4j-log4j12</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
+			<version>1.5</version>
 		</dependency>
 
 		<!-- spring Start -->
@@ -215,148 +97,34 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${spring.version}</version>
+			<artifactId>spring-tx</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
+			<version>3.2.12.RELEASE</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
+			<artifactId>spring-web</artifactId>
+			<version>3.2.12.RELEASE</version>
+			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aspects</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<!-- spring End -->
 
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>2.6.1</version>
-		</dependency>
 
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.jdom</groupId>
-			<artifactId>jdom2</artifactId>
-			<version>2.0.6</version>
-		</dependency>
 
-
-
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>${validator.version}</version>
-		</dependency>
-
-		<!-- Mybatis Start -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>${mybatis.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>${mybatis-spring.version}</version>
-		</dependency>
-		<!-- Mybatis End -->
 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.25</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjtools</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-
-
-
-		<!-- quartz spring 3.1以上才支持quartz 2.2.1 -->
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-			<version>${quartz.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz-jobs</artifactId>
-			<version>${quartz.version}</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-redis</artifactId>
-			<version>1.1.0.RELEASE</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>slf4j-api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>2.1.0</version>
 		</dependency>
 
 		<dependency>
@@ -378,24 +146,7 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.9.5</version>
-			<scope>test</scope>
-		</dependency>
 
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpcore</artifactId>
-			<version>4.4.1</version>
-		</dependency>
-		<!-- 测试依赖jar包 -->
 	</dependencies>
 
 	<dependencyManagement>
@@ -532,52 +283,103 @@
 			</resource>
 		</resources>
 		<plugins>
+			<!-- 自动打包代码 -->
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty.version}</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.5</version>
 				<configuration>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
-					<scanTargets>
-						<scanTarget>src/main/webapp/WEB-INF/web*.xml</scanTarget>
-						<scanTarget>src/main/resources/**/*.xml</scanTarget>
-					</scanTargets>
-					<webAppConfig>
-						<contextPath>/</contextPath>
-						<descriptor>src/main/webapp/WEB-INF/web.xml</descriptor>
-						<tempDirectory>${project.build.directory}/work</tempDirectory>
-					</webAppConfig>
-					<systemProperties>
-						<systemProperty>
-							<name>org.apache.commons.logging.Log</name>
-							<value>org.apache.commons.logging.impl.Log4JLogger</value>
-						</systemProperty>
-						<systemProperty>
-							<name>slf4j</name>
-							<value>false</value>
-						</systemProperty>
-						<systemProperty>
-							<name>log4j.configuration</name>
-							<value>file:./src/main/webapp/WEB-INF/log4j.xml</value>
-						</systemProperty>
-					</systemProperties>
-					<stopKey/>
-					<stopPort/>
+					<outputDirectory>${release.outputDir}</outputDirectory>
+					<archive>
+						<index>false</index>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>${release.mainClass}</mainClass>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<classpathPrefix>lib/</classpathPrefix>
+						</manifest>
+						<manifestEntries>
+							<build-time>${maven.build.timestamp}</build-time>
+							<Class-Path>./classes/</Class-Path>
+						</manifestEntries>
+					</archive>
 				</configuration>
+				<executions>
+					<execution>
+						<id>default-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<excludes>
+								<exclude>*.xml</exclude>
+								<exclude>*.properties</exclude>
+								<exclude>*.sh</exclude>
+								<exclude>*.bat</exclude>
+								<exclude>*.ftl</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.9</version>
+				<executions>
+					<execution>
+						<id>package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
-					<port>8000</port>
-					<path>/</path>
-					<uriEncoding>UTF-8</uriEncoding>
-					<!--<finalName>mgr</finalName>-->
-					<!--<serverXml>src/main/tomcatconf/server.xml</serverXml>-->
-					<server>tomcat7</server>
-					<buildDirectory>${project.build.directory}/buildDirectory</buildDirectory>
+					<includeScope>runtime</includeScope><!-- 只打包运行库 -->
+					<outputDirectory>${release.outputDir}/lib</outputDirectory>
+					<overWriteReleases>true</overWriteReleases>
+					<overWriteSnapshots>true</overWriteSnapshots>
+					<overWriteIfNewer>true</overWriteIfNewer>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>package</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<echo message="*********************************************************"/>
+								<echo message="******************** copy file *************************"/>
+								<echo message="basedir:${basedir}"/>
+								<echo message="project.basedir:${project.basedir}"/>
+								<echo message="project.build.directory:${project.build.directory}"/>
+								<echo message="project.build.outputDirectory:${project.build.outputDirectory}"/>
+								<echo message="project.build.finalName:${project.build.finalName}"/>
+								<echo message="outputDir:${release.outputDir}"/>
+								<echo message="**** copy file:${project.basedir}/src/main/resources ****"/>
+								<copy toDir="${release.outputDir}/classes" overwrite="true">
+									<fileset dir="${project.basedir}/src/main/resources"/>
+								</copy>
+								<copy toDir="${release.outputDir}/." overwrite="true">
+									<fileset dir="${project.basedir}">
+										<include name="run.bat" />
+									</fileset>
+								</copy>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

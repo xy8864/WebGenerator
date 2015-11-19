@@ -40,7 +40,7 @@ public class DefaultCodeMarker implements CodeMarker{
 			map.put("domainName",table.getDomain());
 			map.put("fieldList", table.getColumns());
 
-			filePath=config.getBasePath()+StringUtils.replace(config.getDomain(),".","/")+"/"+table.getDomain()+".java";
+			filePath=config.getOutput()+StringUtils.replace(config.getDomain(),".","/")+"/"+table.getDomain()+".java";
 			engine.writeToFile("domain.ftl",map,filePath);
 			//System.out.println(engine.toString("domain.ftl", map));
 		}
@@ -61,7 +61,7 @@ public class DefaultCodeMarker implements CodeMarker{
 			map.put("domainName",table.getDomain());
 			//map.put("fieldList", table.getColumns());
 
-			filePath=config.getBasePath()+StringUtils.replace(config.getJavaMapper(),".","/")+"/"+table.getDomain()+"Mapper.java";
+			filePath=config.getOutput()+StringUtils.replace(config.getJavaMapper(),".","/")+"/"+table.getDomain()+"Mapper.java";
 			engine.writeToFile("javaMapper.ftl",map,filePath);
 		}
 	}
@@ -82,7 +82,7 @@ public class DefaultCodeMarker implements CodeMarker{
 			map.put("fieldList", table.getColumns());
 			map.put("pk", table.getPk());
 
-			filePath=config.getBasePath()+StringUtils.replace(config.getXmlMapper(),".","/")+"/mapping/"+table.getDomain()+".xml";
+			filePath=config.getOutput()+StringUtils.replace(config.getXmlMapper(),".","/")+"/mapping/"+table.getDomain()+".xml";
 			engine.writeToFile("xmlMapper.ftl",map,filePath);
 			//System.out.println(engine.toString("domain.ftl", map));
 		}
@@ -100,7 +100,7 @@ public class DefaultCodeMarker implements CodeMarker{
 			map.put("domainPackage",config.getDomain());
 			map.put("domainName",table.getDomain());
 
-			filePath=config.getBasePath()+StringUtils.replace(config.getService(),".","/")+"/"+table.getDomain()+"Service.java";
+			filePath=config.getOutput()+StringUtils.replace(config.getService(),".","/")+"/"+table.getDomain()+"Service.java";
 			engine.writeToFile("service.ftl",map,filePath);
 			//System.out.println(engine.toString("domain.ftl", map));
 		}
@@ -122,7 +122,7 @@ public class DefaultCodeMarker implements CodeMarker{
 			map.put("domainName",table.getDomain());
 
 
-			filePath=config.getBasePath()+StringUtils.replace(config.getServiceImpl(),".","/")+"/"+table.getDomain()+"ServiceImpl.java";
+			filePath=config.getOutput()+StringUtils.replace(config.getServiceImpl(),".","/")+"/"+table.getDomain()+"ServiceImpl.java";
 			engine.writeToFile("service.impl.ftl",map,filePath);
 			//System.out.println(engine.toString("domain.ftl", map));
 		}
@@ -147,7 +147,7 @@ public class DefaultCodeMarker implements CodeMarker{
 
 			map.put("domainName",table.getDomain());
 
-			filePath=config.getBasePath()+StringUtils.replace(config.getController(),".","/")+"/"+table.getDomain()+"Controller.java";
+			filePath=config.getOutput()+StringUtils.replace(config.getController(),".","/")+"/"+table.getDomain()+"Controller.java";
 			engine.writeToFile("controller.ftl",map,filePath);
 			//System.out.println(engine.toString("domain.ftl", map));
 		}

@@ -22,16 +22,11 @@ import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 import freemarker.template.TemplateHashModel;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ResourceUtils;
 
-/**
- * @author WYY
- * @description
- */
 public class FreeMarkerEngine implements Engine{
 	private static final Logger logger=LoggerFactory.getLogger(FreeMarkerEngine.class);
 	private static final Configuration config=new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
@@ -73,7 +68,7 @@ public class FreeMarkerEngine implements Engine{
 			logger.error("合并模板出错！", e);
 			throw new IllegalStateException("合并模板出错");
 		}finally{
-			IOUtils.closeQuietly(writer);
+			closeQuietly(writer);
 		}
 	}
 
@@ -92,7 +87,7 @@ public class FreeMarkerEngine implements Engine{
 			logger.error("合并模板出错！", e);
 			throw new IllegalStateException(e);
 		}finally{
-			IOUtils.closeQuietly(writer);
+			closeQuietly(writer);
 		}
 
 		return result;
@@ -115,6 +110,15 @@ public class FreeMarkerEngine implements Engine{
 			logger.error(e.getMessage(),e);
 		}
 		return null;
+	}
+	public static void closeQuietly(Writer output) {
+		try {
+			if (output != null) {
+				output.close();
+			}
+		} catch (IOException ioe) {
+			// ignore
+		}
 	}
 
 	public static void main(String[] args){

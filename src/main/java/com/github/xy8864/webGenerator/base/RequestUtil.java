@@ -15,13 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 
-/**
- * Convenience class for setting and retrieving cookies.
- */
 public class RequestUtil{
 	private transient static Log log=LogFactory.getLog(RequestUtil.class);
 
@@ -416,9 +411,9 @@ public class RequestUtil{
 	 *    </listener>
 	 * </code>
 	 */
-	public static HttpServletRequest getRequest(){
+	/*public static HttpServletRequest getRequest(){
 		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-	}
+	}*/
 	/**
 	 * 需要在web.xml中加
 	 * <code>
@@ -431,9 +426,9 @@ public class RequestUtil{
 	 * getServletRequestAttributes().getResponse();
 	 * getServletRequestAttributes().getSession();
 	 */
-	public static ServletRequestAttributes getServletRequestAttributes(){
+	/*public static ServletRequestAttributes getServletRequestAttributes(){
 		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes());
-	}
+	}*/
 
 	public static void main(String[] args){
 		String[] is=new String[]{"1", "2", "3", null, ""};

@@ -1,18 +1,13 @@
 package com.github.xy8864.webGenerator.util;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import static org.apache.commons.lang.StringUtils.isBlank;
-import static org.apache.commons.lang.StringUtils.isNotBlank;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-import com.google.common.collect.Lists;
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -131,121 +126,8 @@ public class CheckUtil{
 		return false;
 	}
 
-	public static <K, V> V mapValue(Map<K, V> map, K key, V defaultValue){
-		if(isEmpty(map)) return defaultValue;
-		V val=map.get(key);
-		return val==null ? defaultValue : val;
-	}
 
-	public static int mapIntValue(Map<String, Object> map, String key, int defaultValue){
-		if(isEmpty(map)) return defaultValue;
-		Integer val=(Integer) map.get(key);
-		return val==null ? defaultValue : val;
-	}
 
-	public static long mapLongValue(Map<String, Object> map, String key, long defaultValue){
-		if(isEmpty(map)) return defaultValue;
-		Long val=(Long) map.get(key);
-		return val==null ? defaultValue : val;
-	}
 
-	public static double mapDoubleValue(Map<String, Object> map, String key, double defaultValue){
-		if(isEmpty(map)) return defaultValue;
-		Double val=(Double) map.get(key);
-		return val==null ? defaultValue : val;
-	}
-
-	public static boolean mapBooleanValue(Map<String, Object> map, String key, boolean defaultValue){
-		if(isEmpty(map)) return defaultValue;
-		Boolean val=(Boolean) map.get(key);
-		return val==null ? defaultValue : val;
-	}
-
-	/** 生出新的map */
-	public static Map<String, Object> newMap(Object... keyValues){
-		if(keyValues==null || keyValues.length<1 || keyValues.length%2!=0){
-			throw new IllegalArgumentException("参数个数必须是2的倍数!");
-		}
-		int length=keyValues.length/2;
-		Map<String, Object> map=new HashMap<String, Object>(length);
-		for(int i=0; i<length; i++){
-			map.put((String) keyValues[i*2], keyValues[i*2+1]);
-		}
-		return map;
-	}
-
-	public static <T> Set<T> newHashSet(T... values){
-		if(values==null || values.length<1){
-			return null;
-		}
-		Set<T> set=new HashSet<T>(values.length);
-		for(T t : values){
-			if(t!=null) set.add(t);
-		}
-		return set;
-	}
-
-	/** 数组args中加一个add */
-	public static Object[] addArray(Object[] args, Object add){
-		if(args==null) return new Object[]{add};
-		Object[] no=new Object[args.length+1];
-		//arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
-		//src:源数组； srcPos:源数组要复制的起始位置； dest:目的数组； destPos:目的数组放置的起始位置； length:复制的长度
-		System.arraycopy(args, 0, no, 0, args.length);
-		no[args.length+1]=add;
-		return no;
-	}
-
-	public static <T> void addAll(Collection<T> target, Collection<T> add){
-		if(target==null){
-			throw new IllegalArgumentException("要添加的集合为null");
-		}
-		if(isNotEmpty(add)) target.addAll(add);
-	}
-
-	public static <T> T defaultIfNull(T object, T defaultValue){
-		return object!=null ? object : defaultValue;
-	}
-
-	public static Set<Long> splitIds(String idsStr, char separatorChar){
-		if(isBlank(idsStr)) return null;
-		String[] arr=org.apache.commons.lang.StringUtils.split(idsStr, separatorChar);
-		if(isEmpty(arr)) return null;
-		Set<Long> result=new HashSet<Long>(arr.length);
-		long id;
-		for(String idStr : arr){
-			id=org.apache.commons.lang.math.NumberUtils.toLong(idStr);
-			if(id<1){
-				log.debug("有无效或者小于1的id[{}],原数据:{}", idStr, idsStr);
-				continue;
-			}
-			result.add(id);
-		}
-		if(arr.length!=result.size()){
-			log.info("原数据{}:{}和结果{}:[{}]的数目不相同", arr.length, Arrays.toString(arr), result.size(), result);
-		}
-		return result;
-	}
-
-	/** 分割成小集合 */
-
-	public static <T> List<List<T>> split(List<T> list, int limit){
-		if(isEmpty(list)) return null;
-//		List<List<T>> result=new ArrayList<List<T>>();
-//		int size=list.size();
-//		if(size>limit){
-//			int fromIndex=0, toIndex;
-//			//int max=list.size();
-//			while(fromIndex<size){
-//				toIndex=Math.min( fromIndex+limit ,size) ;
-//				result.add(list.subList(fromIndex,toIndex));
-//				fromIndex=toIndex;
-//			}
-//		}else{
-//			result.add(list);
-//		}
-
-		return Lists.partition(list, limit);
-	}
 
 }

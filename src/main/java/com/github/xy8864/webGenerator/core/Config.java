@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class Config{
 	private String dbType;
-	private String basePath;
+	private String output;
 	private String templateDir;
 	private String schema;
 	private String domain;
@@ -36,12 +36,12 @@ public class Config{
 		this.dbType=dbType;
 	}
 
-	public String getBasePath(){
-		return basePath;
+	public String getOutput(){
+		return output;
 	}
 
-	public void setBasePath(String basePath){
-		this.basePath=basePath;
+	public void setOutput(String output){
+		this.output=output;
 	}
 
 	public String getSchema(){
