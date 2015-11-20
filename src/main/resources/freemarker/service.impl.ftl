@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+<#include "copyright.ftl"/>
 @Service("${className}")
 public class ${ClassName}ServiceImpl extends BaseServiceImpl<${ClassName}> implements ${ClassName}Service{
 

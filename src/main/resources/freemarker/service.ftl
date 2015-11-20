@@ -5,6 +5,7 @@ package ${package};
 import ${domainPackage}.${ClassName};
 import com.github.xy8864.webGenerator.base.BaseService;
 
+<#include "copyright.ftl"/>
 public interface ${ClassName}Service extends BaseService<${ClassName}> {
 
 }
