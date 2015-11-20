@@ -269,17 +269,17 @@
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.xml</include>
-				</includes>
 				<filtering>true</filtering>
+				<excludes>
+					<exclude>**/*.xml</exclude>
+				</excludes>
 			</resource>
 			<resource>
 				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*</include>
-				</includes>
 				<filtering>true</filtering>
+				<excludes>
+					<exclude>**/*</exclude>
+				</excludes>
 			</resource>
 		</resources>
 		<plugins>
