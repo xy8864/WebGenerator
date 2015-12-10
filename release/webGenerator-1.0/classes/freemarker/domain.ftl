@@ -3,6 +3,7 @@ package ${package};
 <#assign ClassName=StringUtil.firstToUpper(domainName)>
 import java.io.Serializable;
 
+<#include "copyright.ftl"/>
 public class ${ClassName} implements Serializable {
 	<#list fieldList as field>
 	<#if StringUtils.isNotBlank(field.comment)>/** ${field.comment} */</#if>

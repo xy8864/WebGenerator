@@ -18,7 +18,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+<#include "copyright.ftl"/>
 @Controller
 @RequestMapping("/${className}")
 public class ${ClassName}Controller{
