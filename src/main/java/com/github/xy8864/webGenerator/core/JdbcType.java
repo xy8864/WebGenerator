@@ -26,6 +26,7 @@ public enum JdbcType{
 	VARCHAR("String"),
 	VARCHAR2("String"),
 	LONGVARCHAR("String"),
+	DATETIME("java.util.Date"),
 	DATE("java.util.Date"),
 	TIME("java.util.Date"),
 	TIMESTAMP("java.util.Date"),
