@@ -82,7 +82,7 @@ public class DefaultCodeMarker implements CodeMarker{
 			map.put("fieldList", table.getColumns());
 			map.put("pk", table.getPk());
 
-			filePath=config.getOutput()+StringUtils.replace(config.getXmlMapper(),".","/")+"/"+table.getDomain()+".xml";
+			filePath=config.getOutput()+StringUtils.replace(config.getXmlMapper(),".","/")+"/"+table.getDomain()+"Mapper.xml";
 			engine.writeToFile("xmlMapper.ftl",map,filePath);
 			//System.out.println(engine.toString("domain.ftl", map));
 		}
