@@ -77,6 +77,7 @@ public class DefaultCodeMarker implements CodeMarker{
 		for(Table table:config.getTableMap().values()){
 			map.put("package",config.getXmlMapper());
 			map.put("domainPackage",config.getDomain());
+			map.put("javaMapperPackage",config.getJavaMapper());
 			map.put("domainName",table.getDomain());
 			map.put("tableName",table.getName());
 			map.put("fieldList", table.getColumns());

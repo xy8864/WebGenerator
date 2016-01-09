@@ -1,7 +1,5 @@
 package com.github.xy8864.webGenerator.marker.mysql;
 
-import java.sql.SQLException;
-
 import com.github.xy8864.webGenerator.core.Config;
 import com.github.xy8864.webGenerator.core.GeneratorException;
 import com.github.xy8864.webGenerator.core.Table;
@@ -40,16 +38,15 @@ public class MysqlReader implements DatabaseInfoReader{
 
 
 	void readInfo(Config config){
-		QueryRunner runner=new QueryRunner(dataSource);
-
 		String sql = "SELECT COLUMN_NAME,upper(DATA_TYPE) DATA_TYPE,COLUMN_COMMENT,IF(COLUMN_KEY='PRI',1,0) isPri" +
 				" FROM INFORMATION_SCHEMA.COLUMNS where INFORMATION_SCHEMA.COLUMNS.TABLE_SCHEMA=? and INFORMATION_SCHEMA.COLUMNS.TABLE_NAME=?";
 
 		try{
+			QueryRunner runner=new QueryRunner(dataSource);
 			for(Table table:config.getTableMap().values()){
 				runner.query(sql, new MysqlResultHandler(table),config.getSchema(),table.getName());
 			}
-		}catch(SQLException e){
+		}catch(Exception e){
 			log.info("查询数据库失败", e);
 			throw new GeneratorException("查询数据库失败",e);
 		}
