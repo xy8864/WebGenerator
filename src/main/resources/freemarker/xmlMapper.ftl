@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <#assign ClassName=StringUtil.firstToUpper(domainName)>
-<mapper namespace="${domainPackage}.${ClassName}Mapper" >
+<mapper namespace="${javaMapperPackage}.${ClassName}Mapper" >
 	<resultMap id="RM_${ClassName}" type="${domainPackage}.${ClassName}" >
 	<#list fieldList as field>
 		<#if (field.pk)><id column="${field.name}" property="${field.name}" jdbcType="${field.jdbcType}" />
