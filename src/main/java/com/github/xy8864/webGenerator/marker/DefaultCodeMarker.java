@@ -29,6 +29,9 @@ public class DefaultCodeMarker implements CodeMarker{
 
 
 	void domain(){
+		if(StringUtils.isBlank(config.getDomain())){
+			return;
+		}
 		Map<String,Object> map=new HashMap<String, Object>();
 
 		map.put("StringUtil", FreeMarkerEngine.useStaticPackage("com.github.xy8864.webGenerator.util.StringUtil"));
@@ -49,6 +52,9 @@ public class DefaultCodeMarker implements CodeMarker{
 
 
 	void javaMapper(){
+		if(StringUtils.isBlank(config.getJavaMapper())){
+			return;
+		}
 		Map<String,Object> map=new HashMap<String, Object>();
 
 		map.put("StringUtil", FreeMarkerEngine.useStaticPackage("com.github.xy8864.webGenerator.util.StringUtil"));
@@ -68,6 +74,9 @@ public class DefaultCodeMarker implements CodeMarker{
 
 
 	void xmlMapper(){
+		if(StringUtils.isBlank(config.getXmlMapper())){
+			return;
+		}
 		Map<String,Object> map=new HashMap<String, Object>();
 
 		map.put("StringUtil", FreeMarkerEngine.useStaticPackage("com.github.xy8864.webGenerator.util.StringUtil"));
@@ -91,6 +100,9 @@ public class DefaultCodeMarker implements CodeMarker{
 
 
 	void service(){
+		if(StringUtils.isBlank(config.getService())){
+			return;
+		}
 		Map<String,Object> map=new HashMap<String, Object>();
 
 		map.put("StringUtil", FreeMarkerEngine.useStaticPackage("com.github.xy8864.webGenerator.util.StringUtil"));
@@ -109,6 +121,9 @@ public class DefaultCodeMarker implements CodeMarker{
 
 
 	void serviceImpl(){
+		if(StringUtils.isBlank(config.getServiceImpl())){
+			return;
+		}
 		Map<String,Object> map=new HashMap<String, Object>();
 
 		map.put("StringUtil", FreeMarkerEngine.useStaticPackage("com.github.xy8864.webGenerator.util.StringUtil"));
