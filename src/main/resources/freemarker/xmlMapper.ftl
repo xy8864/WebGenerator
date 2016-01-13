@@ -22,7 +22,7 @@
 		select * from ${tableName}
 		<where>
 		<#list fieldList as field>
-			<if test="${field.name}!=null">and ${field.name}=${r"#{"+field.name+"}"}</if>
+			<if test="${field.name}!=null">and ${field.name}=${r"#{"+field.name+",jdbcType="+field.jdbcType+"}"}</if>
 		</#list>
 		</where>
 		<choose>
@@ -35,7 +35,7 @@
 		select count(*) from ${tableName}
 		<where>
 		<#list fieldList as field>
-			<if test="${field.name}!=null">and ${field.name}=${r"#{"+field.name+"}"}</if>
+			<if test="${field.name}!=null">and ${field.name}=${r"#{"+field.name+",jdbcType="+field.jdbcType+"}"}</if>
 		</#list>
 		</where>
 	</select>
@@ -52,7 +52,7 @@
 		update ${tableName}
 		<set>
 		<#list fieldList as field>
-			<if test="${field.name}!=null">${field.name}=${r"#{"+field.name+","+field.jdbcType+"}"}, </if>
+			<if test="${field.name}!=null">${field.name}=${r"#{"+field.name+",jdbcType="+field.jdbcType+"}"}, </if>
 		</#list>
 		</set>
 		where id = ${r"#{id}"}
