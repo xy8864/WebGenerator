@@ -15,7 +15,7 @@
 	</insert>
 
 	<select id="get" resultMap="RM_${ClassName}" parameterType="java.lang.Long" >
-		select * from ${tableName} where id = ${r"#{"+pk.name+",jdbcType="+pk.jdbcType+"}"}
+		select * from ${tableName} where id = ${r"#{_parameter}"}
 	</select>
 
 	<select id="list" resultMap="RM_${ClassName}" >
@@ -41,11 +41,11 @@
 	</select>
 
 	<update id="toggle">
-		update ${tableName} set status=IF(status=1,0,1),updateTime=sysdate() where id = ${r"#{_parameter}"}"}
+		update ${tableName} set status=IF(status=1,0,1),updateTime=sysdate() where id = ${r"#{_parameter}"}
 	</update>
 
 	<delete id="delete" parameterType="java.lang.Long" >
-		update ${tableName} set status=0,updateTime=sysdate() where id = ${r"#{_parameter}"}"}
+		update ${tableName} set status=0,updateTime=sysdate() where id = ${r"#{_parameter}"}
 	</delete>
 
 	<update id="update">
