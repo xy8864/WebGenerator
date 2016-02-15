@@ -24,6 +24,9 @@ public class MysqlResultHandler implements ResultSetHandler{
 
 	@Override
 	public Object handle(ResultSet rs) throws SQLException{
+		if(rs==null||rs.wasNull()){
+			throw new GeneratorException(String.format("表[%s]没有找到",table));
+		}
 		while(rs.next()){
 			Column column=new Column();
 			column.setName(rs.getString("COLUMN_NAME"));

@@ -3,11 +3,11 @@
 	<config>
 		<property name="jdbc.type" value="mysql"/>
 		<property name="jdbc.driver" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbc.url" value="jdbc:mysql://192.168.28.211:3306/booking?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
-		<property name="jdbc.username" value="bookingUser"/>
-		<property name="jdbc.password" value="booking_abcd"/>
+		<property name="jdbc.url" value="jdbc:mysql://192.168.28.211:3306/emall?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
+		<property name="jdbc.username" value="emall_user"/>
+		<property name="jdbc.password" value="emall_password"/>
 		<!-- 库 -->
-		<property name="jdbc.schema" value="booking"/>
+		<property name="jdbc.schema" value="emall"/>
 
 		<!-- 模板目录 -->
 		<!--<property name="templateDir" value="D:/dev/src/git/spring/WebGenerator/src/main/resources/freemarker/"/>-->
