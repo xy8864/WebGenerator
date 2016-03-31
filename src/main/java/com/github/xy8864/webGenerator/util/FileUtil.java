@@ -347,13 +347,13 @@ public class FileUtil{
 			//return false;
 		}
 		if (descFileName.endsWith(File.separator)) {
-			log.debug(descFileName + " 为目录，不能创建目录!");
+			log.warn(descFileName + " 为目录，不能创建目录!");
 			return false;
 		}
 		if (!file.getParentFile().exists()) {
 			// 如果文件所在的目录不存在，则创建目录
 			if (!file.getParentFile().mkdirs()) {
-				log.debug("创建文件所在的目录失败!");
+				log.warn("创建文件所在的目录失败!");
 				return false;
 			}
 		}
@@ -364,12 +364,12 @@ public class FileUtil{
 				log.debug(descFileName + " 文件创建成功!");
 				return true;
 			} else {
-				log.debug(descFileName + " 文件创建失败!");
+				log.warn(descFileName + " 文件创建失败!");
 				return false;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			log.debug(descFileName + " 文件创建失败!");
+			//e.printStackTrace();
+			log.warn(descFileName + " 文件创建失败:{}",e.getMessage());
 			return false;
 		}
 

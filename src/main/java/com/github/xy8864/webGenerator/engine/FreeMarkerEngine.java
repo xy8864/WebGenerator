@@ -62,7 +62,7 @@ public class FreeMarkerEngine implements Engine{
 				writer = new OutputStreamWriter(new FileOutputStream(filePath),CharsetUtil.UTF_8);
 				template.process(model, writer);
 			}else{
-				logger.info("文件已存在,生成失败");
+				logger.info("文件已存在,生成失败:{}",filePath);
 			}
 		}catch(Exception e){
 			logger.error("合并模板出错！", e);

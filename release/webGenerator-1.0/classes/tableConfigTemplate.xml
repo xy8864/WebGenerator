@@ -6,7 +6,7 @@
 		<property name="jdbc.url" value="jdbc:mysql://192.168.28.211:3306/emall?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
 		<property name="jdbc.username" value="emall_user"/>
 		<property name="jdbc.password" value="emall_password"/>
-		<!-- 库 -->
+		<!-- 库 必须与上面一致,否则会报错 -->
 		<property name="jdbc.schema" value="emall"/>
 
 		<!-- 模板目录 -->
